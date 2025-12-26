@@ -1,0 +1,1472 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --background: #f5f5f0;
+  --foreground: #171717;
+  --card-bg: #f8e8dc;
+  --card-shadow: rgba(0, 0, 0, 0.15);
+  --envelope-front: #d4a574;
+  --envelope-back: #c49666;
+  --envelope-flap: #e8c4a0;
+  --gold: #d4af37;
+  --pink: #e8a598;
+  --green: #8b9a7d;
+  --blue: #5b8a9a;
+  --yellow: #d4b896;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #e8e0d8 0%, #f5f0eb 50%, #e8e0d8 100%);
+  color: var(--foreground);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Utility classes */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.transform {
+  transform: translateX(-50%);
+}
+
+.-translate-x-1\/2 {
+  transform: translateX(-50%);
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+/* Music Toggle Button */
+.music-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(20, 20, 40, 0.8);
+  backdrop-filter: blur(10px);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 20px rgba(138, 43, 226, 0.3),
+    inset 0 0 10px rgba(138, 43, 226, 0.1);
+}
+
+.music-btn:hover {
+  transform: scale(1.1);
+  border-color: rgba(138, 43, 226, 0.6);
+  box-shadow:
+    0 0 30px rgba(138, 43, 226, 0.5),
+    inset 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+.music-btn:active {
+  transform: scale(0.95);
+}
+
+/* Space Galaxy Background */
+.marble-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Stars */
+    radial-gradient(1px 1px at 10% 10%, white 100%, transparent),
+    radial-gradient(1px 1px at 20% 40%, white 100%, transparent),
+    radial-gradient(1.5px 1.5px at 30% 70%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 40% 20%, white 100%, transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.6) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 60% 80%, white 100%, transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(1px 1px at 80% 60%, white 100%, transparent),
+    radial-gradient(1.5px 1.5px at 90% 10%, rgba(255, 255, 255, 0.9) 100%, transparent),
+    radial-gradient(1px 1px at 95% 85%, white 100%, transparent),
+    radial-gradient(1px 1px at 5% 90%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 15% 55%, white 100%, transparent),
+    radial-gradient(1.5px 1.5px at 85% 45%, rgba(255, 220, 255, 0.9) 100%, transparent),
+    /* Nebula colors - more subtle */
+    radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(65, 105, 225, 0.1) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 105, 180, 0.06) 0%, transparent 60%),
+    /* Deep space gradient - darker */
+    linear-gradient(135deg,
+      #050510 0%,
+      #0a0a1a 25%,
+      #050512 50%,
+      #0a0a1a 75%,
+      #050510 100%);
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Nebula overlay layer 1 */
+.marble-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 70% 80%, rgba(65, 105, 225, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 60%, rgba(255, 105, 180, 0.08) 0%, transparent 50%);
+  animation: nebulaPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Twinkling stars overlay */
+.marble-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(1px 1px at 5% 25%, rgba(255, 255, 255, 0.9) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 25% 75%, rgba(255, 220, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 45% 15%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(1px 1px at 65% 85%, rgba(200, 220, 255, 0.9) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 85% 35%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 35% 45%, rgba(255, 200, 255, 0.7) 100%, transparent),
+    radial-gradient(1px 1px at 75% 55%, rgba(255, 255, 255, 0.6) 100%, transparent);
+  animation: twinkleStars 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Nebula pulse animation */
+@keyframes nebulaPulse {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Twinkling stars */
+@keyframes twinkleStars {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Cosmic Fog / Mist */
+.cosmic-fog {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: 0;
+  left: -50%;
+  background:
+    radial-gradient(ellipse 300px 150px at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 200px at 60% 60%, rgba(65, 105, 225, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 250px 125px at 80% 20%, rgba(255, 105, 180, 0.08) 0%, transparent 70%);
+  animation: driftFog 30s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.fog-2 {
+  background:
+    radial-gradient(ellipse 350px 175px at 30% 70%, rgba(65, 105, 225, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 280px 140px at 70% 40%, rgba(138, 43, 226, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 320px 160px at 50% 80%, rgba(100, 149, 237, 0.08) 0%, transparent 70%);
+  animation: driftFog2 40s ease-in-out infinite;
+  animation-delay: -15s;
+  opacity: 0.6;
+}
+
+.fog-3 {
+  background:
+    radial-gradient(ellipse 400px 200px at 10% 50%, rgba(255, 105, 180, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 150px at 90% 70%, rgba(138, 43, 226, 0.08) 0%, transparent 70%);
+  animation: driftFog 50s ease-in-out infinite reverse;
+  animation-delay: -25s;
+  opacity: 0.5;
+}
+
+@keyframes driftFog {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  50% {
+    transform: translateX(15%) translateY(-5%);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes driftFog2 {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+
+  33% {
+    transform: translateX(-10%) translateY(3%) scale(1.05);
+  }
+
+  66% {
+    transform: translateX(8%) translateY(-3%) scale(0.98);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+/* Planets */
+.planet {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  z-index: 1;
+}
+
+.planet-1 {
+  top: 15%;
+  right: 10%;
+  font-size: 60px;
+  animation: floatPlanet 20s ease-in-out infinite;
+}
+
+.planet-2 {
+  top: 70%;
+  left: 8%;
+  font-size: 45px;
+  animation: floatPlanet 15s ease-in-out infinite reverse;
+  animation-delay: -5s;
+}
+
+.planet-3 {
+  bottom: 20%;
+  right: 15%;
+  font-size: 35px;
+  opacity: 0.5;
+  animation: floatPlanet 25s ease-in-out infinite;
+  animation-delay: -10s;
+}
+
+.star-2 {
+  animation-delay: 2s;
+  animation-duration: 3s;
+}
+
+.star-3 {
+  animation-delay: 3.5s;
+  animation-duration: 5s;
+}
+
+/* Space sparkles */
+.space-sparkle {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.6;
+  animation: sparkleFloat 10s ease-in-out infinite;
+}
+
+.sparkle-2 {
+  font-size: 15px;
+  animation-delay: -3s;
+  animation-duration: 12s;
+}
+
+.sparkle-3 {
+  font-size: 18px;
+  animation-delay: -7s;
+  animation-duration: 8s;
+}
+
+/* Planet floating */
+@keyframes floatPlanet {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+/* Shooting star animation */
+@keyframes shootingStar {
+  0% {
+    top: 10%;
+    left: -10%;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  30% {
+    top: 50%;
+    left: 60%;
+    opacity: 1;
+  }
+
+  35% {
+    opacity: 0;
+  }
+
+  100% {
+    top: 70%;
+    left: 110%;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+/* Sparkle floating */
+@keyframes sparkleFloat {
+  0% {
+    top: 20%;
+    left: 10%;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  25% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    top: 60%;
+    left: 50%;
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+
+  75% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  100% {
+    top: 80%;
+    left: 90%;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Envelope Styles - Space Floating */
+.envelope-container {
+  position: relative;
+  width: 420px;
+  height: 300px;
+  cursor: pointer;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+  /* Floating in space animation - slow and smooth */
+  animation: spaceFloat 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.envelope-container:hover {
+  transform: scale(1.05) rotate(-2deg);
+  animation-play-state: paused;
+}
+
+/* Space floating animation - more visible */
+@keyframes spaceFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+  }
+
+  20% {
+    transform: translateY(-40px) translateX(25px) rotate(3deg);
+    filter: drop-shadow(0 55px 55px rgba(0, 0, 0, 0.2));
+  }
+
+  40% {
+    transform: translateY(-15px) translateX(-20px) rotate(-2.5deg);
+    filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35));
+  }
+
+  60% {
+    transform: translateY(-50px) translateX(15px) rotate(2deg);
+    filter: drop-shadow(0 65px 60px rgba(0, 0, 0, 0.15));
+  }
+
+  80% {
+    transform: translateY(-20px) translateX(-15px) rotate(-1.5deg);
+    filter: drop-shadow(0 35px 45px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main envelope body - Galaxy Theme */
+.envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    /* Stars - small dots */
+    radial-gradient(1px 1px at 20% 30%, white 100%, transparent),
+    radial-gradient(1px 1px at 40% 70%, white 100%, transparent),
+    radial-gradient(1px 1px at 50% 20%, white 100%, transparent),
+    radial-gradient(1px 1px at 60% 80%, white 100%, transparent),
+    radial-gradient(1px 1px at 80% 10%, white 100%, transparent),
+    radial-gradient(1.5px 1.5px at 15% 60%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 70% 45%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 90% 55%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(2px 2px at 25% 85%, rgba(255, 200, 255, 0.9) 100%, transparent),
+    radial-gradient(2px 2px at 85% 25%, rgba(200, 220, 255, 0.9) 100%, transparent),
+    /* Nebula glow */
+    radial-gradient(ellipse at 30% 40%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(65, 105, 225, 0.25) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 80%, rgba(255, 105, 180, 0.2) 0%, transparent 40%),
+    /* Galaxy gradient - soft pastel */
+    linear-gradient(135deg,
+      #2d1b4e 0%,
+      #1e3a5f 25%,
+      #2d1b4e 50%,
+      #1a1a3e 75%,
+      #2d1b4e 100%);
+  border-radius: 6px;
+  box-shadow:
+    0 15px 50px rgba(45, 27, 78, 0.5),
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(138, 43, 226, 0.2),
+    inset 0 0 60px rgba(65, 105, 225, 0.1);
+  animation: galaxyPulse 4s ease-in-out infinite;
+  overflow: hidden;
+}
+
+/* Twinkling stars overlay - Moving */
+.envelope-back::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(1px 1px at 10% 15%, rgba(255, 255, 255, 0.9) 100%, transparent),
+    radial-gradient(1px 1px at 30% 50%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 55% 35%, rgba(255, 220, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 75% 70%, rgba(255, 255, 255, 0.6) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 95% 40%, rgba(200, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 15% 80%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 45% 25%, rgba(255, 220, 255, 0.7) 100%, transparent),
+    radial-gradient(2px 2px at 85% 55%, rgba(200, 220, 255, 0.9) 100%, transparent),
+    radial-gradient(1px 1px at 65% 90%, rgba(255, 255, 255, 0.6) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 25% 35%, rgba(255, 200, 255, 0.8) 100%, transparent);
+  animation: moveStars 15s linear infinite, twinkle 2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Bottom flap - Rose Gold Galaxy */
+.envelope-front {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  background:
+    /* Stars */
+    radial-gradient(1px 1px at 25% 40%, rgba(255, 255, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 60% 60%, rgba(255, 255, 255, 0.6) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 80% 30%, rgba(255, 220, 255, 0.7) 100%, transparent),
+    /* Nebula */
+    radial-gradient(ellipse at 50% 50%, rgba(255, 105, 180, 0.25) 0%, transparent 60%),
+    /* Gradient - soft rose/coral */
+    linear-gradient(180deg,
+      rgba(219, 112, 147, 0.9) 0%,
+      rgba(199, 92, 127, 0.95) 40%,
+      rgba(180, 75, 110, 1) 100%);
+  clip-path: polygon(0 30%, 50% 0%, 100% 30%, 100% 100%, 0 100%);
+  z-index: 2;
+  box-shadow:
+    0 -2px 20px rgba(219, 112, 147, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Top flap - Purple Galaxy */
+.envelope-flap {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  top: 0;
+  background:
+    /* Stars */
+    radial-gradient(1px 1px at 20% 25%, rgba(255, 255, 255, 0.9) 100%, transparent),
+    radial-gradient(1px 1px at 45% 40%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(1.5px 1.5px at 70% 30%, rgba(255, 220, 255, 0.8) 100%, transparent),
+    radial-gradient(1px 1px at 85% 50%, rgba(255, 255, 255, 0.6) 100%, transparent),
+    /* Nebula glow */
+    radial-gradient(ellipse at 50% 40%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
+    /* Gradient */
+    linear-gradient(180deg,
+      rgba(75, 50, 120, 0.95) 0%,
+      rgba(55, 35, 95, 1) 50%,
+      rgba(45, 27, 78, 1) 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  filter: drop-shadow(0 0 3px rgba(138, 43, 226, 0.4));
+}
+
+/* Shimmer on flap */
+.envelope-flap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(255, 200, 255, 0.2) 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  animation: flapShimmer 3s ease-in-out infinite;
+}
+
+.envelope-container.opened .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+/* Left side flap - Galaxy */
+.envelope::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 15%;
+  width: 35%;
+  height: 70%;
+  background:
+    radial-gradient(1px 1px at 30% 40%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(ellipse at 60% 50%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
+    linear-gradient(90deg, rgba(45, 27, 78, 1) 0%, rgba(55, 35, 95, 1) 100%);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  z-index: 1;
+}
+
+/* Right side flap - Galaxy */
+.envelope::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  width: 35%;
+  height: 70%;
+  background:
+    radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.7) 100%, transparent),
+    radial-gradient(ellipse at 40% 50%, rgba(65, 105, 225, 0.2) 0%, transparent 50%),
+    linear-gradient(-90deg, rgba(45, 27, 78, 1) 0%, rgba(55, 35, 95, 1) 100%);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  z-index: 1;
+}
+
+/* Galaxy pulse animation */
+@keyframes galaxyPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 15px 50px rgba(45, 27, 78, 0.5),
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      inset 0 0 30px rgba(138, 43, 226, 0.2),
+      inset 0 0 60px rgba(65, 105, 225, 0.1);
+  }
+
+  50% {
+    box-shadow:
+      0 15px 50px rgba(45, 27, 78, 0.6),
+      0 8px 25px rgba(0, 0, 0, 0.35),
+      inset 0 0 40px rgba(138, 43, 226, 0.3),
+      inset 0 0 80px rgba(65, 105, 225, 0.15),
+      inset 0 0 100px rgba(255, 105, 180, 0.1);
+  }
+}
+
+/* Twinkling animation */
+@keyframes twinkle {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Moving stars animation */
+@keyframes moveStars {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(5%, 3%) rotate(2deg);
+  }
+
+  50% {
+    transform: translate(10%, 0%) rotate(0deg);
+  }
+
+  75% {
+    transform: translate(5%, -3%) rotate(-2deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+/* Flap shimmer animation */
+@keyframes flapShimmer {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Floating Stars */
+.floating-star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow:
+    0 0 3px rgba(255, 255, 255, 0.8),
+    0 0 6px rgba(255, 200, 255, 0.6),
+    0 0 10px rgba(138, 43, 226, 0.4);
+  animation: floatStar ease-in-out infinite, starTwinkle ease-in-out infinite alternate;
+}
+
+/* Individual star floating - very gentle */
+@keyframes floatStar {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(2px, -1px);
+  }
+
+  50% {
+    transform: translate(1px, 2px);
+  }
+
+  75% {
+    transform: translate(-1px, -1px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Star twinkling */
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.4;
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.6),
+      0 0 4px rgba(255, 200, 255, 0.4);
+  }
+
+  100% {
+    opacity: 1;
+    box-shadow:
+      0 0 4px rgba(255, 255, 255, 1),
+      0 0 8px rgba(255, 200, 255, 0.8),
+      0 0 15px rgba(138, 43, 226, 0.5);
+  }
+}
+
+/* Wax Seal - Realistic Style */
+.envelope-seal {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  background:
+    /* Wax texture - light reflection */
+    radial-gradient(circle at 25% 25%, rgba(255, 120, 120, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 75% 75%, rgba(60, 0, 0, 0.5) 0%, transparent 35%),
+    /* Main wax color gradient */
+    radial-gradient(circle at 40% 35%, #d42a2a 0%, #b01515 25%, #8b0000 50%, #5c0000 80%, #3d0000 100%);
+  /* Irregular wax seal shape */
+  border-radius: 47% 53% 46% 54% / 52% 48% 52% 48%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    /* Outer shadow */
+    0 6px 20px rgba(80, 0, 0, 0.6),
+    0 3px 8px rgba(0, 0, 0, 0.4),
+    /* Inner highlight */
+    inset 2px 3px 8px rgba(255, 100, 100, 0.35),
+    /* Inner shadow */
+    inset -3px -4px 10px rgba(0, 0, 0, 0.5),
+    /* Edge definition */
+    inset 0 0 2px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  /* Subtle wax edge */
+  border: none;
+  /* Wax surface texture */
+  filter: contrast(1.05);
+}
+
+
+
+/* Wax texture overlay and drip effects */
+.envelope-seal::after {
+  content: '';
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  background:
+    /* Small wax drips */
+    radial-gradient(ellipse at 10% 60%, rgba(139, 0, 0, 0.8) 0%, transparent 15%),
+    radial-gradient(ellipse at 92% 45%, rgba(139, 0, 0, 0.7) 0%, transparent 12%),
+    radial-gradient(ellipse at 85% 80%, rgba(100, 0, 0, 0.6) 0%, transparent 10%),
+    /* Surface scratches/texture */
+    radial-gradient(ellipse at 30% 70%, rgba(255, 200, 200, 0.1) 0%, transparent 20%),
+    radial-gradient(ellipse at 60% 30%, rgba(255, 180, 180, 0.15) 0%, transparent 15%);
+  border-radius: 50% 45% 55% 50% / 45% 55% 50% 50%;
+  pointer-events: none;
+}
+
+.envelope-container:hover .envelope-seal {
+  transform: translateX(-50%) scale(1.08) rotate(-2deg);
+  box-shadow:
+    0 8px 25px rgba(80, 0, 0, 0.7),
+    0 4px 10px rgba(0, 0, 0, 0.5),
+    inset 2px 3px 8px rgba(255, 100, 100, 0.35),
+    inset -3px -4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Click hint */
+.click-hint {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: #8b7355;
+  letter-spacing: 2px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Card Base Styles */
+.card {
+  position: relative;
+  width: 420px;
+  height: 580px;
+  background: var(--card-bg);
+  border-radius: 4px;
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.15),
+    0 15px 40px rgba(0, 0, 0, 0.1),
+    -20px 0 40px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* White envelope behind cards */
+.white-envelope {
+  position: absolute;
+  width: 440px;
+  height: 340px;
+  background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%) rotate(-3deg);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+
+/* Card 1 - GRAD Style */
+.card-grad {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card-grad .name-top {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-align: right;
+  color: #333;
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+
+.grad-layout {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grad-photo {
+  width: 200px;
+  height: 320px;
+  background: linear-gradient(180deg, #c5d4d8 0%, #8a9a7d 50%, #6b7a5d 100%);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.grad-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Silhouette placeholder */
+.grad-photo .silhouette {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(180deg, #b8c8cc 0%, #8a9a7d 40%, #6b7a5d 100%);
+  position: relative;
+}
+
+.grad-photo .silhouette::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 250px;
+  background: radial-gradient(ellipse at center top, #7a6a5a 0%, transparent 60%);
+}
+
+/* GRAD Letters */
+.letter {
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.letter:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: brightness(1.2);
+}
+
+.letter-g {
+  top: -10px;
+  left: 0;
+  color: var(--green);
+  animation: flyInFromLeft 0.8s ease-out forwards, floatG 3s ease-in-out 1s infinite;
+  opacity: 0;
+}
+
+.letter-r {
+  top: 40px;
+  right: 0;
+  color: var(--blue);
+  animation: flyInFromRight 0.8s ease-out 0.2s forwards, floatR 3.5s ease-in-out 1.2s infinite;
+  opacity: 0;
+}
+
+.letter-a {
+  bottom: 80px;
+  left: 10px;
+  color: var(--pink);
+  animation: flyInFromLeft 0.8s ease-out 0.4s forwards, floatA 2.8s ease-in-out 1.4s infinite;
+  opacity: 0;
+}
+
+.letter-d {
+  bottom: 20px;
+  right: 10px;
+  color: var(--yellow);
+  animation: flyInFromRight 0.8s ease-out 0.6s forwards, floatD 3.2s ease-in-out 1.6s infinite;
+  opacity: 0;
+}
+
+/* Fly in animations */
+@keyframes flyInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) rotate(-20deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes flyInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) rotate(20deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+/* Floating animations for each letter */
+@keyframes floatG {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(-3deg);
+  }
+}
+
+@keyframes floatR {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@keyframes floatA {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+}
+
+@keyframes floatD {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(4deg);
+  }
+}
+
+.card-grad .bottom-info {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.card-grad .class-info {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* Card 2 - Invitation Details */
+.card-invite {
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-invite .photo-container {
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(180deg, #d4c8bc 0%, #8a9a7d 50%, #c8b090 100%);
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.card-invite .photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-invite .photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(180deg, #c8bcb0 0%, #a09890 30%, #8a9078 60%, #c8b8a0 100%);
+  position: relative;
+}
+
+.card-invite .photo-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(100, 90, 80, 0.3) 0%, transparent 70%);
+}
+
+.invite-text {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.invite-text .subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.invite-text .main-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+.invite-text .details {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #444;
+  line-height: 2;
+}
+
+.invite-text .details .highlight {
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px) rotate(-5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(-3deg);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px) rotate(5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(2deg);
+  }
+}
+
+@keyframes floatAnimation {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confetti-fall linear forwards;
+  z-index: 1000;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive - Tablet */
+@media (max-width: 768px) {
+  .envelope-container {
+    width: 340px;
+    height: 250px;
+  }
+
+  .card {
+    width: 340px;
+    height: 500px;
+    padding: 20px;
+  }
+
+  .white-envelope {
+    width: 360px;
+    height: 280px;
+  }
+
+  .letter {
+    font-size: 80px;
+  }
+
+  .grad-photo {
+    width: 160px;
+    height: 260px;
+  }
+
+  .card-grad .name-top {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .card-grad .class-info {
+    font-size: 10px;
+  }
+
+  .invite-text .subtitle {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .invite-text .main-name {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+
+  .invite-text .details {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .click-hint {
+    font-size: 14px;
+    bottom: -40px;
+  }
+
+  .card-invite .photo-container {
+    height: 260px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 480px) {
+  .min-h-screen {
+    padding: 1rem;
+  }
+
+  .envelope-container {
+    width: 290px;
+    height: 215px;
+  }
+
+  .card {
+    width: 290px;
+    height: 440px;
+    padding: 15px;
+  }
+
+  .white-envelope {
+    width: 310px;
+    height: 240px;
+  }
+
+  .letter {
+    font-size: 60px;
+  }
+
+  .letter-g {
+    top: 0;
+    left: -5px;
+  }
+
+  .letter-r {
+    top: 30px;
+    right: -5px;
+  }
+
+  .letter-a {
+    bottom: 60px;
+    left: 0;
+  }
+
+  .letter-d {
+    bottom: 10px;
+    right: 0;
+  }
+
+  .grad-photo {
+    width: 130px;
+    height: 210px;
+  }
+
+  .card-grad .name-top {
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding-right: 10px;
+  }
+
+  .card-grad .class-info {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .card-grad .bottom-info {
+    margin-top: 10px;
+  }
+
+  .invite-text .subtitle {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-bottom: 3px;
+  }
+
+  .invite-text .main-name {
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+  }
+
+  .invite-text .details {
+    font-size: 9px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+  }
+
+  .click-hint {
+    font-size: 12px;
+    bottom: -35px;
+    letter-spacing: 1px;
+  }
+
+  .card-invite .photo-container {
+    height: 200px;
+    margin-bottom: 15px;
+  }
+
+  .card-invite {
+    padding: 20px;
+  }
+}
+
+/* Responsive - Very Small Mobile */
+@media (max-width: 360px) {
+  .envelope-container {
+    width: 260px;
+    height: 195px;
+  }
+
+  .card {
+    width: 260px;
+    height: 400px;
+    padding: 12px;
+  }
+
+  .white-envelope {
+    width: 280px;
+    height: 220px;
+  }
+
+  .letter {
+    font-size: 50px;
+  }
+
+  .grad-photo {
+    width: 110px;
+    height: 180px;
+  }
+
+  .invite-text .main-name {
+    font-size: 14px;
+  }
+
+  .invite-text .details {
+    font-size: 8px;
+  }
+
+  .card-invite .photo-container {
+    height: 170px;
+  }
+}
