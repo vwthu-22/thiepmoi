@@ -9,6 +9,24 @@ export default function GraduationInvitation() {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Auto play music when user first interacts with page
+  useEffect(() => {
+    const playMusic = () => {
+      if (audioRef.current && !isMusicPlaying) {
+        audioRef.current.play().then(() => {
+          setIsMusicPlaying(true);
+        }).catch(() => {
+          // Autoplay blocked, user needs to click button
+        });
+      }
+      // Remove listener after first interaction
+      document.removeEventListener('click', playMusic);
+    };
+
+    document.addEventListener('click', playMusic);
+    return () => document.removeEventListener('click', playMusic);
+  }, []);
+
   // Toggle music
   const toggleMusic = () => {
     if (audioRef.current) {
@@ -97,18 +115,18 @@ export default function GraduationInvitation() {
         >
           <div className="envelope">
             <div className="envelope-back">
-              {/* Animated Stars */}
-              {[...Array(15)].map((_, i) => (
+              {/* Animated Stars - fixed positions */}
+              {[10, 25, 40, 55, 70, 85, 15, 30, 45, 60, 75, 90, 20, 35, 50].map((pos, i) => (
                 <div
                   key={i}
                   className="floating-star"
                   style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    width: `${Math.random() * 1.5 + 0.5}px`,
-                    height: `${Math.random() * 1.5 + 0.5}px`,
-                    animationDuration: `${Math.random() * 4 + 4}s`,
-                    animationDelay: `${Math.random() * 3}s`,
+                    left: `${pos}%`,
+                    top: `${(i * 7 + 5) % 100}%`,
+                    width: `${1 + (i % 3) * 0.5}px`,
+                    height: `${1 + (i % 3) * 0.5}px`,
+                    animationDuration: `${5 + (i % 4)}s`,
+                    animationDelay: `${i * 0.3}s`,
                   }}
                 />
               ))}
@@ -119,18 +137,18 @@ export default function GraduationInvitation() {
             </div>
             <div className="envelope-front" />
             <div className="envelope-flap">
-              {/* Stars on top flap */}
-              {[...Array(10)].map((_, i) => (
+              {/* Stars on top flap - fixed positions */}
+              {[15, 30, 45, 60, 75, 90, 25, 50, 70, 85].map((pos, i) => (
                 <div
                   key={i}
                   className="floating-star"
                   style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 70}%`,
-                    width: `${Math.random() * 1.5 + 0.5}px`,
-                    height: `${Math.random() * 1.5 + 0.5}px`,
-                    animationDuration: `${Math.random() * 4 + 4}s`,
-                    animationDelay: `${Math.random() * 3}s`,
+                    left: `${pos}%`,
+                    top: `${(i * 6 + 10) % 70}%`,
+                    width: `${1 + (i % 2) * 0.5}px`,
+                    height: `${1 + (i % 2) * 0.5}px`,
+                    animationDuration: `${5 + (i % 3)}s`,
+                    animationDelay: `${i * 0.4}s`,
                   }}
                 />
               ))}
@@ -152,7 +170,7 @@ export default function GraduationInvitation() {
         >
           <div className="white-envelope" />
           <div className="card card-grad">
-            <div className="name-top">NGUYEN VAN A</div>
+            <div className="name-top">NGUYEN VAN THU</div>
 
             <div className="grad-layout">
               <span className="letter letter-g">G</span>
@@ -160,33 +178,13 @@ export default function GraduationInvitation() {
               <span className="letter letter-a">A</span>
               <span className="letter letter-d">D</span>
 
+              {/* CARD 1 - Thay ảnh: đặt file vào public/ và đổi src */}
               <div className="grad-photo">
-                <div className="silhouette" style={{
-                  background: `
-                    linear-gradient(180deg, 
-                      #b8c8cc 0%, 
-                      #9aaa9d 20%,
-                      #7a8a6d 50%, 
-                      #8a9a7d 80%,
-                      #6b7a5d 100%
-                    )
-                  `
-                }}>
-                  <svg
-                    viewBox="0 0 200 400"
-                    className="absolute inset-0 w-full h-full"
-                    style={{ opacity: 0.6 }}
-                  >
-                    <ellipse cx="100" cy="80" rx="35" ry="40" fill="#5a4a3a" />
-                    <path
-                      d="M 50 120 Q 40 180, 60 280 Q 80 350, 100 380 Q 120 350, 140 280 Q 160 180, 150 120 Q 130 100, 100 110 Q 70 100, 50 120"
-                      fill="#4a5a6a"
-                    />
-                    <ellipse cx="70" cy="70" rx="20" ry="25" fill="#4a3a2a" />
-                    <ellipse cx="130" cy="70" rx="20" ry="25" fill="#4a3a2a" />
-                    <ellipse cx="100" cy="50" rx="30" ry="20" fill="#4a3a2a" />
-                  </svg>
-                </div>
+                <img
+                  src="/photo1.jpg"
+                  alt="Photo"
+                  className="grad-photo-img"
+                />
               </div>
             </div>
 
@@ -223,36 +221,13 @@ export default function GraduationInvitation() {
         >
           <div className="white-envelope" />
           <div className="card card-invite">
+            {/* CARD 2 - Thay ảnh: đặt file vào public/ và đổi src */}
             <div className="photo-container">
-              <div className="photo-placeholder" style={{
-                background: `
-                  linear-gradient(180deg, 
-                    #d8d0c8 0%, 
-                    #c8c0b8 15%,
-                    #a8a098 30%,
-                    #889078 50%, 
-                    #9aa890 70%,
-                    #c8c0a8 100%
-                  )
-                `
-              }}>
-                {/* Silhouette */}
-                <svg
-                  viewBox="0 0 350 320"
-                  className="absolute inset-0 w-full h-full"
-                  style={{ opacity: 0.5 }}
-                >
-                  <ellipse cx="175" cy="60" rx="30" ry="35" fill="#5a4a3a" />
-                  <path
-                    d="M 120 95 Q 100 150, 110 200 Q 120 280, 140 320 L 210 320 Q 230 280, 240 200 Q 250 150, 230 95 Q 200 80, 175 85 Q 150 80, 120 95"
-                    fill="#2a2a2a"
-                  />
-                  {/* Hair */}
-                  <ellipse cx="145" cy="50" rx="25" ry="30" fill="#4a3a2a" />
-                  <ellipse cx="205" cy="50" rx="25" ry="30" fill="#4a3a2a" />
-                  <ellipse cx="175" cy="35" rx="35" ry="25" fill="#4a3a2a" />
-                </svg>
-              </div>
+              <img
+                src="/photo2.jpg"
+                alt="Photo"
+                className="photo-img"
+              />
             </div>
 
             <div className="invite-text">
