@@ -155,7 +155,7 @@ export default function GraduationInvitation() {
             </div>
             {/* <div className="envelope-seal" /> */}
           </div>
-          <div className="click-hint">BẤM ĐỂ MỞ</div>
+          <div className="click-hint">Click to open</div>
         </div>
       )}
 
@@ -205,7 +205,7 @@ export default function GraduationInvitation() {
               animation: "pulse 2s ease-in-out infinite"
             }}
           >
-            BẤM ĐỂ XEM TIẾP
+            Click to continue
           </div>
         </div>
       )}
@@ -254,7 +254,7 @@ export default function GraduationInvitation() {
               animation: "pulse 2s ease-in-out infinite"
             }}
           >
-            BẤM ĐỂ BẮT ĐẦU LẠI
+            Best regards,
           </div>
         </div>
       )}
