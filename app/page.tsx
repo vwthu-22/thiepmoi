@@ -236,8 +236,8 @@ export default function GraduationInvitation() {
               <div className="main-name">NGUYEN VAN THU</div>
 
               <div className="details">
-                <div>SATURDAY, APRIL 6, 2026</div>
-                <div>AT 10:00 AM</div>
+                <div>SATURDAY, APRIL 10, 2026</div>
+                <div>AT 11:00 AM</div>
                 <div>THANG LONG UNIVERSITY</div>
                 <div className="highlight" style={{ marginTop: "10px" }}>RSVP: 0896557295</div>
               </div>
